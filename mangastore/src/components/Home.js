@@ -20,7 +20,7 @@ const Home = (props) => {
                   <h5 class="card-title">Death Note Black Edition, Vol. 1</h5>
                   <p class="card-text">By: Takeshi Obata, Tsugumi Ohba</p>
                   <p class="card-text">€769</p>
-                  <button class="btn btn-primary">Add to cart</button>
+                  <button class="btn btn-primary mx-1">Add to cart</button>
                   <button class="btn btn-secondary">Add to Wishlist</button>
                 </div>
               </div>
@@ -42,7 +42,7 @@ const Home = (props) => {
                   <h5 class="card-title">Jujutsu Kaisen 0</h5>
                   <p class="card-text">By: Gege Akutami</p>
                   <p class="card-text">€485</p>
-                  <button class="btn btn-primary">Add to cart</button>
+                  <button class="btn btn-primary mx-1">Add to cart</button>
                   <button class="btn btn-secondary">Add to Wishlist</button>
                 </div>
               </div>
