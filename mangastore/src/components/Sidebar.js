@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function Sidebar() {
+const Sidebar = () => {
   const [selectedPriceFilters, setSelectedPriceFilters] = useState([]);
   const [selectedGenreFilters, setSelectedGenreFilters] = useState([]);
 
   const handlePriceFilterChange = (e) => {
     const value = e.target.value;
     if (selectedPriceFilters.includes(value)) {
-      setSelectedPriceFilters(selectedPriceFilters.filter(filter => filter !== value));
+      setSelectedPriceFilters(selectedPriceFilters.filter((filter) => filter !== value));
     } else {
       setSelectedPriceFilters([...selectedPriceFilters, value]);
     }
@@ -16,7 +16,7 @@ function Sidebar() {
   const handleGenreFilterChange = (e) => {
     const value = e.target.value;
     if (selectedGenreFilters.includes(value)) {
-      setSelectedGenreFilters(selectedGenreFilters.filter(filter => filter !== value));
+      setSelectedGenreFilters(selectedGenreFilters.filter((filter) => filter !== value));
     } else {
       setSelectedGenreFilters([...selectedGenreFilters, value]);
     }
@@ -28,8 +28,9 @@ function Sidebar() {
   };
 
   return (
-    <div className="sidebar" style={{width: "300px", position: "absolute", paddingLeft: "20px", display: "inline-block"}}>
+    <div className="sidebar" style={{ width: "300px", position: "absolute", paddingLeft: "20px", display: "inline-block" }}>
       <div className="filters">
+        {/* Filter components */}
         <div className="row align-items-center">
           <div className="col-9">
             <h3>Filters</h3>
@@ -85,6 +86,6 @@ function Sidebar() {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

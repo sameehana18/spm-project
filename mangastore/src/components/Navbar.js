@@ -1,10 +1,16 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container-fluid">
+const Navbar = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+  
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
           </a>
@@ -47,19 +53,27 @@ export default class Navbar extends Component {
                 </a>
               </li>
             </ul>
-            <form className="d-flex me-4" role="search" style={{paddingRight: "50px"}}>
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search your favorite books"
-                aria-label="Search"
-                style={{width: "400px"}}
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
-            <div className="position-relative d-flex">
+      <form
+        className="d-flex me-4"
+        role="search"
+        style={{ paddingRight: "50px" }}
+        onSubmit={handleSearch}
+      >
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="Search your favorite books"
+          aria-label="Search"
+          style={{ width: "400px" }}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button className="btn btn-outline-success" type="submit">
+          Search
+        </button>
+      </form>
+      {/* Other navbar content */}
+      <div className="position-relative d-flex">
               <div className="ms-2" style={{paddingRight: "3px"}}>
                 <div className="dropdown">
                   <a
@@ -114,7 +128,8 @@ export default class Navbar extends Component {
             </div>
           </div>
         </div>
-      </nav>
-    );
-  }
-}
+    </nav>
+  );
+};
+
+export default Navbar;
