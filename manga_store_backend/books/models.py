@@ -9,7 +9,7 @@ class Genre(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', default='images/defualtnaru.jpg')
     author = models.CharField(max_length=100)
     genres = models.ManyToManyField(Genre)
     price = models.DecimalField(max_digits=8, decimal_places=2)

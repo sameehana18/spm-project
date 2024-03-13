@@ -45,15 +45,6 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-# CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
-
-# REACT_APP_DIR = os.path.join(BASE_DIR, 'mangastore', 'public')
-
-# STATICFILES_DIRS = [
-#     REACT_APP_DIR,
-# ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,8 +127,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_ROOT = BASE_DIR / 'images'
+
+MEDIA_URL = '/media/'
