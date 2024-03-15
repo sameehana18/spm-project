@@ -19,7 +19,7 @@ function App() {
       <Navbar onSearch={handleSearch}/>
       <div className="container my-3" style={{margin: "16px 40px"}}>
         <Sidebar />
-        <Home display={"inline-block"} marginLeft={"350px"} width={"1000px"} searchTerm={searchTerm}/>
+        <Home display={"inline-block"} marginLeft={"350px"} width={"1000px"} searchTerm={searchTerm} booksPerPage={6}/>
       </div>
     </div>
   );

@@ -6,6 +6,6 @@ from .serializers import BookSerializer
 
 @api_view(['GET'])
 def book_list(request):
-    books = Book.objects.all()
+    books = Book.objects.all().order_by('publication_date')
     serializer = BookSerializer(books, many=True)
     return Response(serializer.data)

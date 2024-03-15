@@ -3,31 +3,16 @@ import Proptypes from "prop-types";
 
 const Home = (props) => {
   const [books, setBooks] = useState([]);
-  const [selectedPriceFilters, setSelectedPriceFilters] = useState([]);
-  const [selectedGenreFilters, setSelectedGenreFilters] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = props.booksPerPage; // Number of books to display per page
+  const totalBooks = books.length;
 
   useEffect(() => {
     fetchBooks();
-  }, [selectedPriceFilters, selectedGenreFilters, searchTerm]);
+  }, [currentPage]);
 
   const fetchBooks = async () => {
     let url = "http://127.0.0.1:8000/api/books";
-
-    // Apply filters
-    if (selectedPriceFilters.length > 0 || selectedGenreFilters.length > 0 || searchTerm) {
-      const params = new URLSearchParams();
-      if (selectedPriceFilters.length > 0) {
-        params.append('price', selectedPriceFilters.join(","));
-      }
-      if (selectedGenreFilters.length > 0) {
-        params.append('genre', selectedGenreFilters.join(","));
-      }
-      if (searchTerm) {
-        params.append('search', searchTerm);
-      }
-      url += `?${params.toString()}`;
-    }
 
     try {
       const response = await fetch(url);
@@ -38,12 +23,25 @@ const Home = (props) => {
     }
   };
 
+  // Logic to get books for the current page
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+
+  // Logic for changing page
+  const nextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
   return (
     <div className="container mt-5" style={{ display: props.display, marginLeft: props.marginLeft, width: props.width }}>
-      {/* Filter components */}
       {/* Display fetched books */}
       <div className="row">
-        {books.map((book) => (
+        {currentBooks.map((book) => (
           <div key={book.id} className="col-md-6">
             <div className="card mb-3" style={{ maxWidth: '540px' }}>
               <div className="row g-0">
@@ -65,9 +63,13 @@ const Home = (props) => {
           </div>
         ))}
       </div>
+      {/* Pagination buttons */}
+      <div className="d-flex justify-content-between mt-4">
+        <button className="btn btn-success mx-2" onClick={prevPage} disabled={currentPage === 1}>&larr; Previous</button>
+        <button className="btn btn-success mx-2" onClick={nextPage} disabled={indexOfLastBook >= totalBooks}>Next &rarr;</button>
+      </div>
     </div>
   );
-  
 };
 
 export default Home;
